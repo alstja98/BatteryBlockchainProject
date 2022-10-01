@@ -36,10 +36,11 @@
   justify-content: center;
   align-items: center;
 }
-.afterLogin {
-  display: flex;
-}
 .walletMenu {
+  display: flex;
+  align-items: center;
+}
+.walletAddress {
   display: flex;
 }
 @keyframes slide-fade-in-dropdown-animation {
