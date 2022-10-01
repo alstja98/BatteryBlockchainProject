@@ -30,41 +30,40 @@ const Header = () => {
           </Link>
         </div>
         <div className="menuContainer">
-          <div className="">
-            <div className="menu">
-              <button onClick={e => setDropdownVisibility(!dropdownVisibility)}>
-                raw data
-                {dropdownVisibility ? 'Close' : 'Open'}
-              </button>
-              <Dropdown visibility={dropdownVisibility}>
-                <ul>
-                  <li>
-                    <Link to="/allrawdata">allrawdata</Link>
-                  </li>
-                  <li>
-                    <Link to="/myrawdata">myrawdata</Link>
-                  </li>
-                </ul>
-              </Dropdown>
+          <div
+            className="menu"
+            onClick={e => setDropdownVisibility(!dropdownVisibility)}
+          >
+            raw data
+            {dropdownVisibility}
+          </div>
+          <Dropdown visibility={dropdownVisibility}>
+            <ul>
+              <li>
+                <Link to="/allrawdata">allrawdata</Link>
+              </li>
+              <li>
+                <Link to="/myrawdata">myrawdata</Link>
+              </li>
+            </ul>
+          </Dropdown>
+        </div>
+        <div className="menu">dataflow</div>
+        <div className="menu">transaction</div>
+        <div className="walletMenu">
+          {!isAuthenticated ? (
+            <div className="login" onClick={login}>
+              Wallet Connect
             </div>
-            <div className="menu">dataflow</div>
-            <div className="menu">transaction</div>
-          </div>
-          <div className="walletMenu">
-            {!isAuthenticated ? (
-              <div className="login" onClick={login}>
-                Wallet Connect
+          ) : (
+            <>
+              <div className="walletAddress">
+                {address.substring(0, 4) +
+                  '...' +
+                  address.substring(address.length - 4)}
               </div>
-            ) : (
-              <>
-                <div className="walletAddress">
-                  {address.substring(0, 4) +
-                    '...' +
-                    address.substring(address.length - 4)}
-                </div>
-              </>
-            )}
-          </div>
+            </>
+          )}
         </div>
       </div>
     </>
