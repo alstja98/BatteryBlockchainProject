@@ -3,8 +3,8 @@ import { Route, Routes } from 'react-router';
 import './App.scss';
 import Mainpage from './pages/Mainpage';
 import Header from './components/common/Header';
-import RawData from './components/app/AllRawData';
-import MyData from './components/app/MyRawData';
+import AllRawData from './components/app/AllRawData';
+import MyRawData from './components/app/MyRawData';
 import DataFlow from './components/app/DataFlow';
 
 function App() {
@@ -16,8 +16,8 @@ function App() {
       <div className="mainWindow">
         <Routes>
           <Route path="/" element={<Mainpage />} />
-          <Route path="/rawdata" element={<RawData />} />
-          <Route path={`/mydata`} element={<MyData />} />
+          <Route path="/allrawdata" element={<AllRawData />} />
+          <Route path={`/myrawdata`} element={<MyRawData />} />
           <Route path="/dataflow" element={<DataFlow />}></Route>
         </Routes>
       </div>

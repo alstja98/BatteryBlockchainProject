@@ -1,0 +1,41 @@
+.middle {
+    margin : 0;
+    padding : 0;
+}
+
+.title { 
+    font-size : 25pt;
+    font-weight:600;
+    margin: 0 auto;
+    margin-top : 100px;
+    width : 1125px;
+    text-align: center;
+}
+
+.container {
+	margin: 0 auto;
+	position: relative;
+	width:1000px;
+}
+
+
+.input-query {
+	width: 25%;
+	padding: 0.5em;
+	border: 1px solid #d4d7e1;
+	border-radius: 3px;
+	font-size: 1em;
+    float: right;
+    margin-top : 40px;
+}
+
+.input-query:hover{
+	background-color:#f7f9fa;
+}
+
+.input-query:focus ~ .counter {
+	opacity: 0.1;
+	transition: opacity 1s ease-in;
+}
+
+
