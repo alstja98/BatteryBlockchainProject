@@ -1,6 +1,93 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #abcdef;
+}
 .logoContainer {
-  background-color: yellow;
+  display: flex;
+  align-items: center;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  width: 156px;
+  height: 37px;
 }
 .menuContainer {
-  background-color: yellow;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+.menu {
+  align-items: center;
+  justify-content: center;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+.login {
+  width: 130px;
+  height: 30px;
+  border-radius: 0.5rem;
+  background-color: #fbfd56;
+  font-weight: 700px;
+  border: solid 1px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.walletMenu {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+.walletAddress {
+  display: flex;
+}
+
+@keyframes slide-fade-in-dropdown-animation {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.slide-fade-in-dropdown {
+  overflow: hidden;
+}
+
+.slide-fade-in-dropdown > ul {
+  animation: slide-fade-in-dropdown-animation 0.4s ease;
+}
+
+@keyframes slide-fade-out-dropdown-animation {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-120%);
+  }
+}
+
+.slide-fade-out-dropdown {
+  overflow: hidden;
+}
+
+.slide-fade-out-dropdown > ul {
+  animation: slide-fade-out-dropdown-animation 0.4s ease;
+  animation-fill-mode: forwards;
+}
+
+.components-dropdown > ul {
+  position: relative;
+  top: 5px;
+  margin-top: 0;
+  margin-bottom: 5px;
+  padding-left: 0px;
+  list-style: none;
 }

@@ -3,6 +3,7 @@ import './Mainpage.scss';
 
 const Mainpage = () => {
   return (
+<<<<<<< HEAD
       <div className="middle">
         <div className="top_Sentence">
           Battery-Blockchain Web3 Platform
@@ -22,6 +23,11 @@ const Mainpage = () => {
           We protect our customers&apos; personal information until the end.<br/>
         </div>
       </div>
+=======
+    <>
+      <div>MainPage</div>
+    </>
+>>>>>>> 4270263ae712b26476612efb6c9d4bd99d79961c
   );
 };
 
