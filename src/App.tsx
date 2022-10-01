@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "./logo.svg";
-import { useMoralis } from "react-moralis";
+// import { useMoralis } from "react-moralis";
 import "./App.css";
 import Mainpage from "./pages/Mainpage";
 
