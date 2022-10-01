@@ -1,9 +1,6 @@
-import React from "react";
-import { useMoralis } from "react-moralis";
+import React from 'react';
 
 const Mainpage = () => {
-  const { isAuthenticated, Moralis } = useMoralis();
-
   return <></>;
 };
 

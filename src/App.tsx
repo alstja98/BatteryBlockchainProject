@@ -1,17 +1,26 @@
-import React from "react";
-import logo from "./logo.svg";
-import { useMoralis } from "react-moralis";
-import "./App.css";
-import Mainpage from "./pages/Mainpage";
+import React from 'react';
+import { Route, Routes } from 'react-router';
+import './App.scss';
+import Mainpage from './pages/Mainpage';
+import Header from './components/common/Header';
+import RawData from './components/app/RawData';
+import MyData from './components/app/MyData';
+import DataFlow from './components/app/DataFlow';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <div>
-          <Mainpage />
-        </div>
+      <header className="headerContainer">
+        <Header />
       </header>
+      <div className="mainWindow">
+        <Routes>
+          <Route path="/" element={<Mainpage />} />
+          <Route path="/rawdata" element={<RawData />} />
+          <Route path={`/mydata`} element={<MyData />} />
+          <Route path="/dataflow" element={<DataFlow />}></Route>
+        </Routes>
+      </div>
     </div>
   );
 }
