@@ -1,7 +1,11 @@
 import React from 'react';
 
 const MyData = () => {
-  return <></>;
+  return (
+    <>
+      <div>myrawdata</div>
+    </>
+  );
 };
 
 export default MyData;

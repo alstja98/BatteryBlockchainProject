@@ -16,9 +16,9 @@ function App() {
       <div className="mainWindow">
         <Routes>
           <Route path="/" element={<Mainpage />} />
-          <Route path="/rawdata" element={<RawData />} />
-          <Route path={`/mydata`} element={<MyData />} />
-          <Route path="/dataflow" element={<DataFlow />}></Route>
+          <Route path="/allrawdata" element={<RawData />} />
+          <Route path={`/myrawdata`} element={<MyData />} />
+          <Route path="/dataflow" element={<DataFlow />} />
         </Routes>
       </div>
     </div>
