@@ -36,20 +36,20 @@ const Header = () => {
           >
             raw data
             {dropdownVisibility}
+            <Dropdown visibility={dropdownVisibility}>
+              <ul>
+                <li>
+                  <Link to="/allrawdata">allrawdata</Link>
+                </li>
+                <li>
+                  <Link to="/myrawdata">myrawdata</Link>
+                </li>
+              </ul>
+            </Dropdown>
           </div>
-          <Dropdown visibility={dropdownVisibility}>
-            <ul>
-              <li>
-                <Link to="/allrawdata">allrawdata</Link>
-              </li>
-              <li>
-                <Link to="/myrawdata">myrawdata</Link>
-              </li>
-            </ul>
-          </Dropdown>
+          <div className="menu">dataflow</div>
+          <div className="menu">transaction</div>
         </div>
-        <div className="menu">dataflow</div>
-        <div className="menu">transaction</div>
         <div className="walletMenu">
           {!isAuthenticated ? (
             <div className="login" onClick={login}>

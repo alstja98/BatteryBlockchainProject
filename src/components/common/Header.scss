@@ -22,8 +22,9 @@
 }
 .menu {
   align-items: center;
-  display: flex;
   justify-content: center;
+  margin-right: 30px;
+  margin-left: 30px;
 }
 .login {
   width: 130px;
@@ -44,6 +45,7 @@
 .walletAddress {
   display: flex;
 }
+
 @keyframes slide-fade-in-dropdown-animation {
   0% {
     transform: translateY(-100%);
@@ -86,6 +88,6 @@
   top: 5px;
   margin-top: 0;
   margin-bottom: 5px;
-  padding-left: 0;
+  padding-left: 0px;
   list-style: none;
 }
