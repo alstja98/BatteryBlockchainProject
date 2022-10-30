@@ -25,8 +25,9 @@ const Header = () => {
     <>
       <div className="header">
         <div className="logoContainer">
-          <Link to="/">
-            <img className="logo" src={require('../../images/testLogo.png')} />
+          <Link to="/" style={{textDecoration:'none', display:'flex'}}>
+            <img className="logo" src={require('../../images/logo.png')} />
+            <div className="logoName">ProBat</div>
           </Link>
         </div>
         <div className="menuContainer">
@@ -34,26 +35,26 @@ const Header = () => {
             className="menu"
             onClick={e => setDropdownVisibility(!dropdownVisibility)}
           >
-            raw data
+            배터리 데이터
             {dropdownVisibility}
             <Dropdown visibility={dropdownVisibility}>
               <ul>
                 <li>
-                  <Link to="/allrawdata">allrawdata</Link>
+                  <Link to="/allrawdata" style={{textDecoration:'none', color:'black'}}>All Data</Link>
                 </li>
                 <li>
-                  <Link to="/myrawdata">myrawdata</Link>
+                  <Link to="/myrawdata" style={{textDecoration:'none', color:'black'}}>My Data</Link>
                 </li>
               </ul>
             </Dropdown>
           </div>
-          <div className="menu">dataflow</div>
-          <div className="menu">transaction</div>
+          <div className="menu">데이터 차트</div>
+          <div className="menu">트랜잭션 리스트</div>
         </div>
         <div className="walletMenu">
           {!isAuthenticated ? (
             <div className="login" onClick={login}>
-              Wallet Connect
+              지갑 연결
             </div>
           ) : (
             <>
