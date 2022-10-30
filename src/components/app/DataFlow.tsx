@@ -1,10 +1,14 @@
 import React from 'react';
 
 const DataFlow = () => {
+
   return (
-    <>
-      <div>dataflow</div>
-    </>
+    <div className="middle">
+      <div className="title">
+        Data Flow using Matlab Simulink
+      </div>
+
+    </div>
   );
 };
 

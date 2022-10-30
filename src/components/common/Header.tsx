@@ -48,7 +48,7 @@ const Header = () => {
               </ul>
             </Dropdown>
           </div>
-          <div className="menu">데이터 차트</div>
+          <Link to="/DataFlow" style={{textDecoration:'none', color:'black'}}><div className="menu">데이터 차트</div></Link>
           <div className="menu">트랜잭션 리스트</div>
         </div>
         <div className="walletMenu">
