@@ -21,7 +21,11 @@ const Mainpage = () => {
           Even though our information will grow the company,<br></br>
           We protect our customers&apos; personal information until the end.<br/>
         </div>
-
+        <div style={{margin:'0 auto', width:'100%', textAlign:'center'}}>
+        <img className="main1" src={require('../images/main1.png')}/>
+        <img className="main2" src={require('../images/main2.png')}/>
+        <img className="main3" src={require('../images/main3.png')}/>
+        </div>
       </div>
   );
 };
