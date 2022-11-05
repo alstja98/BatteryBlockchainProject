@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import '../scss/AllRawData.scss';
 import MaterialTable from '../js/alldata.js';
+// import CsvTest from '../js/csvparsing.js';
 
 const AllData = () => {
   
@@ -18,6 +19,10 @@ const AllData = () => {
       <div className="table">
         <MaterialTable />
       </div>
+{/* { 
+      <div className="table2">
+        <CsvTest />
+      </div> } */}
     </div>
   );
 };

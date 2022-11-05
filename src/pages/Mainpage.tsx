@@ -21,6 +21,7 @@ const Mainpage = () => {
           Even though our information will grow the company,<br></br>
           We protect our customers&apos; personal information until the end.<br/>
         </div>
+
       </div>
   );
 };
