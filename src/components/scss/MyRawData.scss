@@ -50,3 +50,15 @@
 	padding-right: 20px;
 	border-radius: 6px;
 }
+
+@media (hover: none) and (pointer: coarse) {
+	.input-query {
+		width: 60%;
+		padding: 0.5em;
+		border: 1px solid #d4d7e1;
+		border-radius: 3px;
+		font-size: 1em;
+		float: left;
+		margin-top : 40px;
+	}
+}
