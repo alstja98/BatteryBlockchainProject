@@ -1,30 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import Web3 from 'web3';
+import React, { useEffect, useState, createContext, useRef } from 'react';
 import { AbiItem } from 'web3-utils';
-import $ from 'jquery';
 import '../scss/AllRawData.scss';
-import MaterialTable from '../js/alldata.js';
-import {
-  HTTP_PROVIDER_LINK,
-  WEBSOCKET_PROVIDER_LINK,
-  TEST_ADDRESS,
-  TEST_ABI,
-} from '../../constants/constants';
-import { request } from 'https';
-import CsvTest from '../js/csvtest';
+import MaterialTable from '../js/alldata.jsx';
+import { TEST_ADDRESS, TEST_ABI } from '../../constants/constants';
 import Papa, { parse, ParseResult } from 'papaparse';
+import timeConvertor from '../../function/timeConvertor';
 
-const AllData = () => {
-  const web3 = new Web3(new Web3.providers.HttpProvider(HTTP_PROVIDER_LINK));
-  const web3Ws = new Web3(
-    new Web3.providers.WebsocketProvider(WEBSOCKET_PROVIDER_LINK),
-  );
-  const [txhash, setTxhash] = useState<any>('abc');
+type allDataType = {
+  Wallet: string;
+  Cell_No: number;
+  Cell_Voltages: number;
+  Pack_Voltage: number;
+  Pack_Current: number;
+  Vout_Chgr: number;
+  Cell_Temperatures: number;
+  Upload_Date: Date;
+};
+
+const rowsArray: string[] = [];
+const valuesArray: string[] = [];
+
+const AllData = (prop: any) => {
+  const web3 = prop.http;
+  const web3Ws = prop.ws;
+  const MyContract = prop.contract;
+  const [txhash, setTxhash] = useState<any>('');
   const [csvUrl, setCsvUrl] = useState<string>('');
   const [start, setStart] = useState<boolean>(false);
 
-  const rowsArray: string[] = [];
-  const valuesArray: string[] = [];
+  const tableRef = useRef();
 
   const transactionWatcher = async () => {
     web3Ws.eth.subscribe(
@@ -32,7 +36,7 @@ const AllData = () => {
       {
         address: TEST_ADDRESS,
       },
-      async function (error, result) {
+      async function (error: any, result: any) {
         if (!error) {
           allDataWatcher();
         }
@@ -40,13 +44,15 @@ const AllData = () => {
     );
   };
 
+  // const allDataWatcher = async () => {
+  //   const res = await MyContract.methods.my_data().call();
+  //   setCsvUrl('https://gateway.pinata.cloud/ipfs/' + res['0'][0].slice(-1));
+  //   alert(csvUrl);
+  // };
   const allDataWatcher = async () => {
-    const MyContract = new web3.eth.Contract(
-      TEST_ABI as AbiItem[],
-      TEST_ADDRESS,
-    );
     const res = await MyContract.methods.all_data().call();
     setCsvUrl('https://gateway.pinata.cloud/ipfs/' + res['0'][0].slice(-1));
+    // alert('url' + csvUrl);
   };
 
   // State to store parsed data
@@ -56,10 +62,12 @@ const AllData = () => {
   const [tableRows, setTableRows] = useState<any[]>([]);
 
   //State to store the values
-  const [values, setValues] = useState<any[]>([]);
+  const [values, setValues] = useState<any[]>();
 
   useEffect(() => {
-    const res = changeHandler(csvUrl, rowsArray, valuesArray);
+    if (csvUrl.length > 10) {
+      const res = changeHandler(csvUrl, rowsArray, valuesArray);
+    }
   }, [csvUrl]);
 
   const changeHandler = (url: string, rowsArray: any[], valuesArray: any[]) => {
@@ -71,8 +79,8 @@ const AllData = () => {
       complete: function (results: ParseResult<Record<string, unknown>>) {
         // Iterating data to get column name and their values
         results?.data?.map(d => {
-          rowsArray.push(Object.keys(d));
-          valuesArray.push(Object.values(d));
+          rowsArray?.push(Object.keys(d));
+          valuesArray?.push(Object.values(d));
         });
 
         // Parsed Data Response in array format
@@ -83,13 +91,13 @@ const AllData = () => {
 
         // Filtered Values
         setValues(valuesArray);
+        // setValues(values?.concat(valuesArray));
         setStart(true);
       },
     });
   };
-
   allDataWatcher();
-  transactionWatcher();
+  // transactionWatcher();
 
   return (
     <div className="middle">
@@ -103,36 +111,16 @@ const AllData = () => {
           placeholder="원하는 시간을 입력하세요."
         />
       </div>
-      {start ? (
-        <div className="table">
+
+      <div className="table">
+        {typeof values === 'object' ? (
           <div>
-            <br />
-            {/* Table */}
-            <table>
-              <thead>
-                <tr>
-                  {tableRows.map((rows, index) => {
-                    return <th key={index}>{rows}</th>;
-                  })}
-                </tr>
-              </thead>
-              <tbody>
-                {values.map((value, index) => {
-                  return (
-                    <tr key={index}>
-                      {value.map((val: any, i: any) => {
-                        return <td key={i}>{val}</td>;
-                      })}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <MaterialTable tableRef={tableRef} data={values} />
           </div>
-        </div>
-      ) : (
-        'wait...'
-      )}
+        ) : (
+          'wait...'
+        )}
+      </div>
     </div>
   );
 };
