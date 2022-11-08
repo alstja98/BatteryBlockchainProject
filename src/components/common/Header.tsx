@@ -54,14 +54,18 @@ const Header = () => {
                       All Data
                     </Link>
                   </li>
-                  <li>
-                    <Link
-                      to="/myrawdata"
-                      style={{ textDecoration: 'none', color: 'black' }}
-                    >
-                      My Data
-                    </Link>
-                  </li>
+                  {isAuthenticated ? (
+                    <li>
+                      <Link
+                        to="/myrawdata"
+                        style={{ textDecoration: 'none', color: 'black' }}
+                      >
+                        My Data
+                      </Link>
+                    </li>
+                  ) : (
+                    <></>
+                  )}
                 </ul>
               </Dropdown>
             </div>
