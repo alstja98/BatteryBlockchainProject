@@ -8,8 +8,22 @@ import AllRawData from './components/app/AllRawData';
 import MyRawData from './components/app/MyRawData';
 import DataFlow from './components/app/DataFlow';
 import { BrowserView, MobileView } from 'react-device-detect';
+import Web3 from 'web3';
+import { AbiItem } from 'web3-utils';
+import {
+  HTTP_PROVIDER_LINK,
+  WEBSOCKET_PROVIDER_LINK,
+  TEST_ADDRESS,
+  TEST_ABI,
+} from './constants/constants';
 
 function App() {
+  const web3 = new Web3(new Web3.providers.HttpProvider(HTTP_PROVIDER_LINK));
+  const web3Ws = new Web3(
+    new Web3.providers.WebsocketProvider(WEBSOCKET_PROVIDER_LINK),
+  );
+
+  const MyContract = new web3.eth.Contract(TEST_ABI as AbiItem[], TEST_ADDRESS);
   return (
     <div className="App">
       <BrowserView>
@@ -25,8 +39,18 @@ function App() {
       <div className="mainWindow">
         <Routes>
           <Route path="/" element={<Mainpage />} />
-          <Route path="/allrawdata" element={<AllRawData />} />
-          <Route path={`/myrawdata`} element={<MyRawData />} />
+          <Route
+            path="/allrawdata"
+            element={
+              <AllRawData http={web3} ws={web3Ws} contract={MyContract} />
+            }
+          />
+          <Route
+            path={`/myrawdata`}
+            element={
+              <MyRawData http={web3} ws={web3Ws} contract={MyContract} />
+            }
+          />
           <Route path="/dataflow" element={<DataFlow />}></Route>
         </Routes>
       </div>
