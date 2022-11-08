@@ -5,11 +5,8 @@ import { useMoralis } from 'react-moralis';
 import './Header.scss';
 import Dropdown from './DropDown';
 
-
-
 const Header = () => {
-
-  //지갑 연결 
+  //지갑 연결
   const { isAuthenticated, authenticate, user } = useMoralis();
   const login = async () => {
     if (!isAuthenticated) {
@@ -18,9 +15,13 @@ const Header = () => {
   };
 
   const [address, setAddress] = useState<string>('');
+  let user_tx_url =
+    'https://mumbai.polygonscan.com/address/' + user?.attributes.ethAddress;
   useEffect(() => {
     if (isAuthenticated) {
       setAddress(user?.attributes.ethAddress);
+      user_tx_url =
+        'https://mumbai.polygonscan.com/address/' + user?.attributes.ethAddress;
     }
   }, [isAuthenticated]);
 
@@ -46,15 +47,30 @@ const Header = () => {
               <Dropdown visibility={dropdownVisibility}>
                 <ul>
                   <li>
-                    <Link to="/allrawdata" style={{ textDecoration: 'none', color: 'black' }}>All Data</Link>
+                    <Link
+                      to="/allrawdata"
+                      style={{ textDecoration: 'none', color: 'black' }}
+                    >
+                      All Data
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/myrawdata" style={{ textDecoration: 'none', color: 'black' }}>My Data</Link>
+                    <Link
+                      to="/myrawdata"
+                      style={{ textDecoration: 'none', color: 'black' }}
+                    >
+                      My Data
+                    </Link>
                   </li>
                 </ul>
               </Dropdown>
             </div>
-            <Link to="/DataFlow" style={{ textDecoration: 'none', color: 'black' }}><div className="menu">데이터 차트</div></Link>
+            <Link
+              to="/DataFlow"
+              style={{ textDecoration: 'none', color: 'black' }}
+            >
+              <div className="menu">데이터 차트</div>
+            </Link>
             <div
               className="menu"
               onClick={e => setDropdownVisibility2(!dropdownVisibility2)}
@@ -63,11 +79,29 @@ const Header = () => {
               {dropdownVisibility2}
               <Dropdown visibility={dropdownVisibility2}>
                 <ul>
+                  {isAuthenticated ? (
+                    <li>
+                      <a
+                        href={user_tx_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ textDecoration: 'none', color: 'black' }}
+                      >
+                        트랜잭션 전송 확인
+                      </a>
+                    </li>
+                  ) : (
+                    <></>
+                  )}
                   <li>
-                    <a href="https://mumbai.polygonscan.com/address/0xe441bdDc454A1909de4b3fe0Eb7Ac18BA8703076" target='_blank' rel='noopener noreferrer' style={{ textDecoration: 'none', color: 'black' }}>트랜잭션 전송 확인</a>
-                  </li>
-                  <li>
-                    <a href="https://mumbai.polygonscan.com/address/0xcddda9a4793c6d48362999c2b09fe3ce69224bc4" target='_blank' rel='noopener noreferrer' style={{ textDecoration: 'none', color: 'black' }}>저장된 해시값 확인</a>
+                    <a
+                      href="https://mumbai.polygonscan.com/address/0xcddda9a4793c6d48362999c2b09fe3ce69224bc4"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ textDecoration: 'none', color: 'black' }}
+                    >
+                      저장된 해시값 확인
+                    </a>
                   </li>
                 </ul>
               </Dropdown>
@@ -89,7 +123,6 @@ const Header = () => {
             )}
           </div>
         </div>
-
       </div>
     </>
   );
