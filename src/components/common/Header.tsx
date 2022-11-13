@@ -4,10 +4,11 @@ import { useState, useEffect } from 'react';
 import { useMoralis } from 'react-moralis';
 import './Header.scss';
 import Dropdown from './DropDown';
+import $ from 'jquery';
 
 const Header = () => {
   //지갑 연결
-  const { isAuthenticated, authenticate, user } = useMoralis();
+  const { isAuthenticated, authenticate, user, logout } = useMoralis();
   const login = async () => {
     if (!isAuthenticated) {
       await authenticate().then(() => window.location.reload());
@@ -24,6 +25,26 @@ const Header = () => {
         'https://mumbai.polygonscan.com/address/' + user?.attributes.ethAddress;
     }
   }, [isAuthenticated]);
+
+  const logoutHandler = async () => {
+    await logout().then(() => window.location.reload());
+  };
+
+
+  $( ".login" ).on('mouseenter',()=>{
+    $(".logout").fadeIn();
+  });
+  $( ".logout" ).on('mouseenter',()=>{
+    $(".logout").show();
+  });
+  $( ".logout" ).on('mouseleave',()=>{
+    $(".logout").fadeOut();
+  });
+
+  $('.login').on('click',()=>{
+    $('.logout').fadeIn();
+  })
+
 
   const [dropdownVisibility, setDropdownVisibility] = React.useState(false);
   const [dropdownVisibility2, setDropdownVisibility2] = React.useState(false);
@@ -64,7 +85,8 @@ const Header = () => {
                       </Link>
                     </li>
                   ) : (
-                    <></>
+                    <div style={{ textDecoration: 'none', color: 'black' }} onClick={() => { login(); alert('지갑 연결을 해주세요'); }}>
+                      My data</div>
                   )}
                 </ul>
               </Dropdown>
@@ -123,6 +145,7 @@ const Header = () => {
                     '...' +
                     address.substring(address.length - 4)}
                 </div>
+                <div onClick={logoutHandler} className="logout">지갑 해제</div>
               </>
             )}
           </div>

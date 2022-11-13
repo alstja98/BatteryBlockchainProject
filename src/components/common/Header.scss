@@ -38,8 +38,8 @@
   color:#939392;
 }
 .login {
-  width: 150px;
-  height: 37px;
+  width: 100%;
+  height: 100%;
   border-radius: 0.2rem;
   background-color: #b39c7d;
   cursor: pointer;
@@ -52,14 +52,34 @@
   align-items: center;
 }
 .walletMenu {
+  width:150px;
+  height:30px;
   display: flex;
   align-items: center;
-  margin-right: 20px;
+  margin-top:15px;
+  margin-right: 25px;
 }
 .walletAddress {
   display: flex;
+  border:1px solid #eff4f5;
+  border-radius: 12px;
+  padding:5px 10px;
+  background-color: #eff4f5;
+  cursor:pointer;
+  box-shadow:rgb(0 0 0 / 10%) 0px -2px 0px inset;
 }
-
+.logout{
+  position:absolute;
+  top:50px;
+  margin-left:4px;
+  border:2px solid #dfdfdf;
+  border-radius:9px;
+  z-index:100;
+  background-color:white;
+  padding:5px 10px;
+  cursor:pointer;
+  display:none;
+}
 @keyframes slide-fade-in-dropdown-animation {
   0% {
     transform: translateY(-100%);

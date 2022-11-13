@@ -30,6 +30,7 @@ const AllData = (prop: any) => {
 
   const tableRef = useRef();
 
+
   const transactionWatcher = async () => {
     web3Ws.eth.subscribe(
       'logs',
